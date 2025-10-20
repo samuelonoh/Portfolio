@@ -37,9 +37,12 @@
 
 body {
     background-color: var(--color-primary);
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
     color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     transition: all .4s ease-in-out;
 }
 
@@ -63,7 +66,8 @@ section {
     position: absolute;
     left: 0;
     top: 0;
-    padding: 3rem 18rem;
+    /* use more reasonable side padding for modern layouts */
+    padding: 3rem 6rem;
 }
 
 .container {
@@ -182,19 +186,24 @@ section {
             }
         }
     }
+        .image { box-shadow: 0 10px 30px rgba(2,6,23,0.45); }
 
     .right-header {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-right: 18rem;
+        padding-right: 6rem;
         .name {
-            font-size: 3rem;
+            font-size: 3.6rem;
+            font-weight: 700;
+            letter-spacing: -0.4px;
             span { color: var(--color-secondary); }
         }
         p {
-            margin: 1.5rem 0;
-            line-height: 2rem;
+            margin: 1.2rem 0;
+            line-height: 1.8rem;
+            color: var(--color-grey-1);
+            max-width: 60ch;
         }
     }
 }
@@ -382,25 +391,31 @@ section {
 
 .portfolios {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-gap: 2.5rem;
     margin-top: 3rem;
-    .portfolio-item {
+    .portfolio {
         position: relative;
-        border-radius: 15px;
+        background-color: transparent;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(2,6,23,0.35);
+        transition: transform .35s ease, box-shadow .35s ease;
+        &:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(2,6,23,0.45); }
         img {
             width: 100%;
-            height: 300px;
-            object-fit: contain;
-            border-radius: 15px;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
         .hover-items {
-            width: 100%;
-            height: 100%;
-            background-color: var(--color-secondary);
             position: absolute;
             left: 0;
             top: 0;
+            width: 100%;
+            height: 100%;
             border-radius: 15px;
             display: flex;
             justify-content: center;
@@ -666,6 +681,40 @@ section {
             font-size: 6.3rem;
         }
     }
+}
+
+/* Center content within each section and limit line length for readability */
+.container > .header-content,
+.container > .about-container,
+.container > .portfolios,
+.container > .blogs-content,
+.container > .contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Slightly smaller, subtler controls on desktop */
+.controls .control{
+    width: 48px;
+    height: 48px;
+}
+.controls .control i{ font-size: 1rem; }
+
+/* Button polish */
+.main-btn{
+    box-shadow: 0 6px 18px rgba(2,6,23,0.35);
+}
+.main-btn:focus, .main-btn:active{ outline: 3px solid rgba(39,174,96,0.18); }
+
+/* Focus styles for interactive elements */
+a:focus, button:focus, input:focus, textarea:focus{
+    outline: 3px solid rgba(39,174,96,0.14);
+    outline-offset: 2px;
+}
+
+/* Reduce the big background title on smaller screens */
+@media screen and (max-width:1250px){
+    .main-title h2 .bg-text{ font-size: 4.5rem; }
 }
 
 @import './media';
