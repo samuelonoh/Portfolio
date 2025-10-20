@@ -38,15 +38,18 @@
 
     .controls{
         top: auto;
-        bottom: 0;
+        bottom: 1.2rem;
         flex-direction: row;
         justify-content: center;
         left: 50%;
         transform: translateX(-50%);
-        width: 100%;
-        background-color: var(--color-grey-5);
+        width: auto;
+        background-color: transparent;
+        padding: 0 .5rem;
         .control{
-            margin: 1rem .3rem;
+            margin: 0 .4rem;
+            width: 44px;
+            height: 44px;
         }
     }
 
@@ -70,7 +73,7 @@
     }
 
     .container{
-        padding: 2rem 2.5rem !important;
+        padding: 2rem 1.25rem !important;
     }
 
     .about-stats{
